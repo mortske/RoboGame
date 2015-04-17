@@ -6,7 +6,8 @@ import MotorControl
 class Motor(object):
     def __init__(self):
         self.timer = 0
-        self.adjustment = 0.01
+        self.upwardadjustment = 0.01
+        self.downwardadjustment = 0.01
         #self.motor= MotorControl.MotorControl()
 
 #    def Initialize(self):
@@ -20,19 +21,18 @@ class Motor(object):
 
 
         if self.timer < -1:
-            self.timer = 0;
+            self.timer = 0
             #update motor backward with 0
             speed=0
 
         if forwardbackward == 1:
-            self.timer = self.timer + self.adjustment
+            self.timer = self.timer + self.upwardadjustment
 
         if forwardbackward == -1:
-            self.timer = self.timer - self.adjustment
+            self.timer = self.timer - self.downwardadjustment * 2
 
         if forwardbackward == 0:
-            if self.timer != 0:
-                self.timer = 0
+            self.timer = self.timer - self.downwardadjustment
         #self.motor.update_motor(speed,1)
         return screen
 
